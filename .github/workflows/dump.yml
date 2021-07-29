@@ -52,4 +52,9 @@ jobs:
         env:
           JOB_CONTEXT: ${{ toJSON(job) }}
         run: echo "$JOB_CONTEXT"
+      - name: Dump job one environment
+        env:
+          JOB_ONE_ENV: ${{ toJSON(job.one.environment) }}
+        run: echo "$JOB_ONE_ENV"
+        
 
