@@ -9,6 +9,9 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
+      - name: Add something to env
+        run: |
+          echo "MYENV=1.2.3" >> $GITHUB_ENV
       - name: Dump GitHub environment
         env:
           ENV_CONTEXT: ${{ toJSON(env) }}
