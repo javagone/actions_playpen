@@ -15,7 +15,9 @@ jobs:
       - name: Dump GitHub environment
         env:
           ENV_CONTEXT: ${{ toJSON(env) }}
-        run: echo "$ENV_CONTEXT"
+        run: |
+          echo "$ENV_CONTEXT"
+          echo "MYENV is $MYENV"
       - name: Dump job context
         env:
           JOB_CONTEXT: ${{ toJSON(job) }}
@@ -36,3 +38,14 @@ jobs:
         env:
           MATRIX_CONTEXT: ${{ toJSON(matrix) }}
         run: echo "$MATRIX_CONTEXT"
+  two:
+    needs: [one]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub environment
+        env:
+          ENV_CONTEXT: ${{ toJSON(env) }}
+        run: |
+          echo "$ENV_CONTEXT"
+          echo "MYENV is $MYENV"
+
