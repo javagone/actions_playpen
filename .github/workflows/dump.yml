@@ -48,4 +48,8 @@ jobs:
         run: |
           echo "$ENV_CONTEXT"
           echo "MYENV is $MYENV"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJSON(job) }}
+        run: echo "$JOB_CONTEXT"
 
