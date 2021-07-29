@@ -4,14 +4,19 @@ on:
 jobs:
   one:
     runs-on: ubuntu-latest
+    outputs:
+      myenv: ${{ steps.addenv.outputs.myenv }}
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - name: Add something to env
+      - id: addenv
+        name: Add something to env
         run: |
-          echo "MYENV=1.2.3" >> $GITHUB_ENV
+          MYENV="1.2.3"
+          echo "MYENV=$MYENV" >> $GITHUB_ENV
+          echo "::set-output name=myenv::$MYENV"
       - name: Dump GitHub environment
         env:
           ENV_CONTEXT: ${{ toJSON(env) }}
@@ -52,9 +57,7 @@ jobs:
         env:
           JOB_CONTEXT: ${{ toJSON(job) }}
         run: echo "$JOB_CONTEXT"
-      - name: Dump job one environment
-        env:
-          JOB_ONE_ENV: ${{ toJSON(job.one.environment) }}
-        run: echo "$JOB_ONE_ENV"
+      - name: Dump job one myenv
+        run: echo "Job one MYENV is ${{ needs.job1.outputs.myenv }}"
         
 
