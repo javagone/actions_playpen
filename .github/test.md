@@ -27,7 +27,7 @@ Example: [Shelf](https://pub.dev/packages/shelf) (will point to one of our own o
 	- Dependencies (generated)
 	- More (generated)
 
-All items to be completed:
+All items to be completed: TEST
 - [ ] Package should be implemented with rSDK
 - [ ] Include an example (sample) app based on at_app skeleton
 - [ ] Add example.md to explain how to run the sample app
